@@ -13,15 +13,16 @@ function sign(val) {
 function Matrix(array, width, height) {
 
 	var _matrix;
-	if(width === undefined && height === undefined) {
+	if(array !== undefined) {
 		_matrix = array;
 	} else {
-
 		_matrix = [];
-		for(var i = 0; i < width; i++) {
-			for(var j = 0; j < height; j++) {
-				_matrix[i][j] = 0;
+		for(var i = 0; i < height; i++) {
+			var row = [];
+			for(var j = 0; j < width; j++) {
+				row[j] = 0;
 			}
+			_matrix[i] = row;
 		}
 	}
 
@@ -29,25 +30,29 @@ function Matrix(array, width, height) {
 	this.add = function(mat) {
 		var res = new Matrix(undefined, mat.length(), mat.height());
 
-		for(var i = 0; i < width; i++) {
-			for(var j = 0; j < height; j++) {
+		for(var i = 0; i < this.height(); i++) {
+			for(var j = 0; j <  this.length(); j++) {
 				res.set(i, j, (_matrix[i][j] + mat.get(i,j)));
 			}
 		}
 		return res;
 	};
 
-	this.column = function(i) {
-		return _matrix[i];
+	this.column = function(n) {
+		var res = [];
+		for(var i = 0; i < this.height(); i++) {
+			res[i] = _matrix[i][n];
+		}
+		return res;
 	};
 
 	this.transposed = function() {
 		var res = [];
-		for(var i = 0; i < width; i++) {
-			for(var j = 0; j < height; j++) {
-				res[j][i] = _matrix[i][j];
-			}
+		for(var i = 0; i < this.length(); i++) {
+			res[i] = this.column(i);
+			
 		}
+		return new Matrix(res);
 	};
 
 	this.set = function(i, j, val) {
@@ -61,20 +66,20 @@ function Matrix(array, width, height) {
 	this.toVector = function() {
 		var res = [];
 		var n = 0;
-		for(var i = 0; i < width; i++) {
-			for(var j = 0; j < height; j++, n++) {
-				res[n] = _matrix[i][j];
+		for(var i = 0; i < this.length(); i++) {
+			for(var j = 0; j < this.height(); j++, n++) {
+				res[n] = _matrix[j][i];
 			}
 		}
+		return new Vector(res);
 	};
 
-	this.length = function() {
-		console.log('test' + _matrix.length);
+	this.height = function() {
 		return _matrix.length;
 
 	};
 
-	this.height = function() {
+	this.length = function() {
 		return _matrix[0].length;
 	};
 }
@@ -96,15 +101,15 @@ function Vector(array, length) {
 		_vector[i] = val;
 	};
 
-	this.get = function(il) {
+	this.get = function(i) {
 		return _vector[i];
 	};
 
 	this.mult = function(vec) {
-		var res = new Matrix(undefined, _vector.length, vec.length);
+		var res = new Matrix(undefined, _vector.length, vec.length());
 		for (var i = 0; i < _vector.length; i++) {
-			for (var j = 0; j < vec.length; j++) {
-				res.set(i, j) = _vector[i] * vec.get(j);
+			for (var j = 0; j < vec.length(); j++) {
+				res.set(j, i, (_vector[i] * vec.get(j)));
 			}
 		}
 		return res;
@@ -123,15 +128,28 @@ function Vector(array, length) {
 		var n = 0;
 		for(var i = 0; i < size; i++) {
 			for(var j = 0; j < size; j++, n++) {
-				res.set(i,j, _vector[n]);
+				res.set(j,i, _vector[n]);
 			}
 		}
+		return res;
 	};
 
 	this.toArray = function() {
 		return _vector;
+	};
+
+	this.length = function() {
+		return _vector.length;
 	}
 	
 }
 
-
+function showMat(matrix) {
+	for (var i = 0; i < matrix.height(); i++) {
+		var row = '';
+		for(var j = 0; j < matrix.length(); j++) {
+			row += matrix.get(i,j) + ' ';
+		}
+		console.log(row);
+	}
+}
