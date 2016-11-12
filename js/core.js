@@ -1,15 +1,14 @@
+function learn() {
 
+	var localW = currentMatrix.toVector().mult(currentMatrix.toVector());
 
-function addObraz() {
-
-	var loacalW = currentMatrix.toVector().mult(currentMatrix.toVector());
-	W = W.add(loacalW);
+	W = W.add(localW);
 	for(var i = 0; i < W.length; i++) {
 		W.set(i, i, 0);
 	}
 }
 
-function checkObraz() {
+function check() {
 	
 	var outputVector = currentMatrix.toVector();
 	
