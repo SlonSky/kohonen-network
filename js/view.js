@@ -17,6 +17,10 @@ function setUserMatrix(matrix, table) {
 	
 }
 
+function switchMode() {
+	
+}
+
 function addRow() {
 	
 	var columnsAmount = $('#inputTable tr:first-child td').length;
@@ -43,6 +47,16 @@ function addRow() {
 				this.style.removeProperty('background-color');
 		};
 	}
+}
+
+function removeRow() {
+	$('#inputTable tr:last-child').remove();
+	$('#outputTable tr:last-child').remove();
+}
+
+function removeColumn() {
+	$('#inputTable tr td:last-child').remove();
+	$('#outputTable tr td:last-child').remove();
 }
 
 function addColumn() {
