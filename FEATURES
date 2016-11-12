@@ -40,3 +40,6 @@ new Vector ([])
 w = m.add(m.transposed());
 
 sign(inObraz.multScalar(W.column(randVal)))
+
+
+TODO: добавление образа в матрицу.

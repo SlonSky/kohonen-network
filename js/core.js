@@ -1,6 +1,7 @@
 
 
 function addObraz() {
+
 	var loacalW = currentMatrix.toVector().mult(currentMatrix.toVector());
 	W = W.add(loacalW);
 	for(var i = 0; i < W.length; i++) {
