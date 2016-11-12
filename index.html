@@ -2,44 +2,33 @@
 <html>
 <head>
 	<title></title>
-	<style type="text/css">
-		table {
-			border-collapse: collapse;
-		}
-
-		td {
-			border: 1px solid black;
-			width: 20px;
-			height: 20px;
-			content: '0';
-		}
-
-		.setted {
-			background-color: black; 
-		}
-
-		.unsetted {
-			background-color: white; 	
-		}
-
-	</style>
+	<link rel="stylesheet" href="./css/style.css"></link>
 </head>
 <body>
-<h1>Hello</h1>
+<div class="tables">
+	<table id="inputTable">
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
 
-<table>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td></tr>
-</table>
+	<table id="outputTable">
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
+</div>
 
-<script type="text/javascript" src="./tools.js"></script>
-<script type="text/javascript" src="./view.js"></script>
-<script type="text/javascript" src="./core.js"></script>
+<input type="button" name="input" value="addRow" onclick="addRow()">
+<input type="button" name="input" value="addColumn" onclick="addColumn()">
+<input type="button" name="input" value="clear" onclick="clearTables()">
+
+<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/tools.js"></script>
+<script type="text/javascript" src="./js/view.js"></script>
+<script type="text/javascript" src="./js/core.js"></script>
 
 </body>
 </html>
