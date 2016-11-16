@@ -1,12 +1,25 @@
-var cells = document.getElementsByTagName('td');
-for (var i = 0; i < cells.length; i++) {
-	cells[i].onclick = function() {
+// Init
+setOnClick();
 
-		if(this.style.backgroundColor != 'rgb(0, 0, 0)')
-			this.style.backgroundColor = 'rgb(0, 0, 0)'; 
-		else
-			this.style.removeProperty('background-color');
-	};
+function click() {
+	if(this.style.backgroundColor != 'rgb(0, 0, 0)')
+		this.style.backgroundColor = 'rgb(0, 0, 0)'; 
+	else
+		this.style.removeProperty('background-color');
+	
+	var row = this.parentNode.rowIndex;
+	var column = this.cellIndex;
+	
+	console.log('Clicked on: ' + row + ' ' + column);
+
+	setMatched(row, column);
+}
+
+function setOnClick() {
+	var cells = $('#inputTable tr td');
+	for (var i = 0; i < cells.length; i++) {
+		cells[i].onclick = click;
+	}
 }
 
 function getUserMatrix() {
@@ -14,6 +27,10 @@ function getUserMatrix() {
 }
 
 function setUserMatrix(matrix, table) {
+	
+}
+
+function switchMode() {
 	
 }
 
@@ -33,16 +50,17 @@ function addRow() {
 		$('#outputTable tr:last-child').append('<td>');
 	}
 
-	var cells = document.getElementsByTagName('td');
-	for (var i = 0; i < cells.length; i++) {
-		cells[i].onclick = function() {
+	setOnClick();
+}
 
-			if(this.style.backgroundColor != 'rgb(0, 0, 0)')
-				this.style.backgroundColor = 'rgb(0, 0, 0)'; 
-			else
-				this.style.removeProperty('background-color');
-		};
-	}
+function removeRow() {
+	$('#inputTable tr:last-child').remove();
+	$('#outputTable tr:last-child').remove();
+}
+
+function removeColumn() {
+	$('#inputTable tr td:last-child').remove();
+	$('#outputTable tr td:last-child').remove();
 }
 
 function addColumn() {
@@ -59,16 +77,7 @@ function addColumn() {
 		$('#outputTable tr:nth-child(' + i + ')').append('<td>');
 	}
 
-	var cells = document.getElementsByTagName('td');
-	for (var i = 0; i < cells.length; i++) {
-		cells[i].onclick = function() {
-
-			if(this.style.backgroundColor != 'rgb(0, 0, 0)')
-				this.style.backgroundColor = 'rgb(0, 0, 0)'; 
-			else
-				this.style.removeProperty('background-color');
-		};
-	}	
+	setOnClick();
 }
 
 function clearTables() {
@@ -80,3 +89,4 @@ function clearTables() {
 		cells[i].style.removeProperty('background-color');
 	}	
 }
+
