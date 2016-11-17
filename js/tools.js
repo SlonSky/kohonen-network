@@ -123,11 +123,11 @@ function Vector(array, length) {
 		return res;
 	};
 	
-	this.toMatrix = function(size) {
-		var res = new Matrix(undefined, size, size);
+	this.toMatrix = function(width, height) {
+		var res = new Matrix(undefined, width, height);
 		var n = 0;
-		for(var i = 0; i < size; i++) {
-			for(var j = 0; j < size; j++, n++) {
+		for(var i = 0; i < width; i++) {
+			for(var j = 0; j < height; j++, n++) {
 				res.set(j,i, _vector[n]);
 			}
 		}

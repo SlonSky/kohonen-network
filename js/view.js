@@ -1,36 +1,50 @@
+var currentMatrix;
+
+var W;
+
 // Init
 setOnClick();
 
-function click() {
+function click(a) {
+	console.log(a);
 	if(this.style.backgroundColor != 'rgb(0, 0, 0)')
 		this.style.backgroundColor = 'rgb(0, 0, 0)'; 
 	else
 		this.style.removeProperty('background-color');
-	
-	var row = this.parentNode.rowIndex;
-	var column = this.cellIndex;
-	
-	console.log('Clicked on: ' + row + ' ' + column);
-
-	setMatched(row, column);
 }
 
 function setOnClick() {
-	var cells = $('#inputTable tr td');
-	for (var i = 0; i < cells.length; i++) {
+
+	cells = $('#inputTable tr td');
+
+	for(var i = 0; i < cells.length; i++) {
 		cells[i].onclick = click;
 	}
 }
 
 function getUserMatrix() {
 
+	var width = $('#inputTable tr:first-child td').length;
+	var height = $('#inputTable tr').length;
+
+	currentMatrix = new Matrix(undefined, width, height);
+
+	for(var i = 0; i < height; i++) {
+		for(var j = 0; j < width; j++) {
+
+			if($('#inputTable tr:nth-child('+(i+1)+') td:nth-child('+(j+1)+')').css('backgroundColor') == 'rgb(0, 0, 0)') {
+				currentMatrix.set(i, j, 1);
+			} else {
+				currentMatrix.set(i, j, -1);
+			}
+		}
+	}
+
+	// $('#qwert').css('display', 'hidden');
+	// console.log($('#qwert').css('display'));
 }
 
 function setUserMatrix(matrix, table) {
-	
-}
-
-function switchMode() {
 	
 }
 
